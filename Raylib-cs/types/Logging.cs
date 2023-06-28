@@ -40,7 +40,7 @@ namespace Raylib_cs
     /// </summary>
     public static unsafe class Logging
     {
-        [UnmanagedCallersOnly(CallConvs = new[] { typeof(System.Runtime.CompilerServices.CallConvCdecl) })]
+        [UnmanagedCallersOnly(CallConvs = new[] { typeof(CallConvCdecl) })]
         public static unsafe void LogConsole(int msgType, sbyte* text, sbyte* args)
         {
             var message = GetLogMessage(new IntPtr(text), new IntPtr(args));

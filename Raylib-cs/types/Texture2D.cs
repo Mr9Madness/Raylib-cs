@@ -109,6 +109,49 @@ namespace Raylib_cs
     [StructLayout(LayoutKind.Sequential)]
     public partial struct Texture2D
     {
+        public static Texture2D FromData(int width, int height, nint data)
+        {
+            Texture2D texture;
+
+            unsafe
+            {
+                Image image = new()
+                {
+                    width = width,
+                    height = height,
+                    mipmaps = 1,
+                    format = PixelFormat.PIXELFORMAT_UNCOMPRESSED_R8G8B8A8,
+                    data = data.ToPointer()
+                };
+
+                texture = Raylib.LoadTextureFromImage(image);
+            }
+
+            Raylib.SetTextureFilter(texture, TextureFilter.TEXTURE_FILTER_POINT);
+            Raylib.SetTextureWrap(texture, TextureWrap.TEXTURE_WRAP_CLAMP);
+
+            return texture;
+        }
+
+        public static unsafe Texture2D FromPtr(int width, int height, byte* data)
+        {
+            Image image = new()
+            {
+                width = width,
+                height = height,
+                mipmaps = 1,
+                format = PixelFormat.PIXELFORMAT_UNCOMPRESSED_R8G8B8A8,
+                data = data
+            };
+
+            Texture2D texture = Raylib.LoadTextureFromImage(image);
+
+            Raylib.SetTextureFilter(texture, TextureFilter.TEXTURE_FILTER_POINT);
+            Raylib.SetTextureWrap(texture, TextureWrap.TEXTURE_WRAP_CLAMP);
+
+            return texture;
+        }
+
         /// <summary>
         /// OpenGL texture id
         /// </summary>

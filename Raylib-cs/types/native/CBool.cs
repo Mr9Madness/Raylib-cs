@@ -27,7 +27,7 @@ namespace Raylib_cs
         {
             this.value = (sbyte)(value ? 1 : 0);
         }
-        public CBool(Int64 value)
+        public CBool(long value)
         {
             this.value = (sbyte)(value != 0 ? 1 : 0);
         }
@@ -53,7 +53,7 @@ namespace Raylib_cs
         }
 
         // Same goes for integer numeric values (any value, so an Int64 is used).
-        public static implicit operator CBool(Int64 x)
+        public static implicit operator CBool(long x)
         {
             return new CBool { value = (sbyte)(x != 0 ? 1 : 0) };
         }
