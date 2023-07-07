@@ -4,7 +4,7 @@ using System.Numerics;
 
 namespace Raylib_cs;
 
-public struct Point : IEquatable<Point>
+public struct Point : IEquatable<Point>, IAdditionOperators<Point, Point, Point>, IAdditionOperators<Point, Vector2, Point>
 {
     public int X;
     public int Y;
